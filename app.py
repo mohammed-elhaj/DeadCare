@@ -4,7 +4,7 @@ import easyocr
 import numpy as np
 
 # Set up EasyOCR reader (you can specify the language here, e.g., ['en'] for English)
-reader = easyocr.Reader(['ar'])
+reader = easyocr.Reader(['ar'], gpu=False)
 
 # Streamlit app
 st.title("Image Text Extraction with EasyOCR")
