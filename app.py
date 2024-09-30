@@ -3,7 +3,7 @@ from PIL import Image
 import easyocr
 
 # Set up EasyOCR reader (you can specify the language here, e.g., ['en'] for English)
-reader = easyocr.Reader(['en'])
+reader = easyocr.Reader(['ar'])
 
 # Streamlit app
 st.title("Image Text Extraction with EasyOCR")
