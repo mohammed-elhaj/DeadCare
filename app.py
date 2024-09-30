@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import easyocr
+import numpy as np
 
 # Set up EasyOCR reader (you can specify the language here, e.g., ['en'] for English)
 reader = easyocr.Reader(['ar'])
@@ -17,11 +18,14 @@ if uploaded_image is not None:
     image = Image.open(uploaded_image)
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
+    # Convert the PIL image to numpy array
+    image_np = np.array(image)
+
     # Extract text button
     if st.button("Extract Text"):
         with st.spinner("Extracting text..."):
-            # Convert image to byte array for OCR processing
-            result = reader.readtext(uploaded_image)
+            # Pass the numpy array to EasyOCR
+            result = reader.readtext(image_np)
 
             # Display the extracted text
             st.subheader("Extracted Text:")
