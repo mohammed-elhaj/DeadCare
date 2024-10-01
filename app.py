@@ -79,5 +79,5 @@ if uploaded_image is not None:
 
             st.subheader("All Information:")
             for result in results:
-                st.text(resutl[1])
+                st.text(result[1])
 
