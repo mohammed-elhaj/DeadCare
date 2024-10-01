@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image, ImageDraw
 import easyocr
 import numpy as np
+import pandas as pd
 
 def draw_bboxes(image, results):
     # Convert image to RGB (if not already in RGB mode)
@@ -108,7 +109,27 @@ if uploaded_image is not None:
             st.text(f"2. Nationality (left of {nationality_1_indicators}): {nationality_1}")
             st.text(f"3. Name (left of {name_2_indicators}): {name_2}")
             st.text(f"4. Nationality (left of {nationality_2_indicators}): {nationality_2}")
-
+            data = {
+                "Information": [
+                    f"Name (left of {name_1_indicators})",
+                    f"Nationality (left of {nationality_1_indicators})",
+                    f"Name (left of {name_2_indicators})",
+                    f"Nationality (left of {nationality_2_indicators})"
+                ],
+                "Extracted Text": [
+                    name_1,
+                    nationality_1,
+                    name_2,
+                    nationality_2
+                ]
+            }
+            
+            # Convert the data into a pandas DataFrame
+            df = pd.DataFrame(data)
+            
+            # Display the table using st.table
+            st.subheader("Extracted Information:")
+            st.table(df)
             st.subheader("All Information:")
             # Draw bounding boxes on the image
             img_with_bboxes = draw_bboxes(image, results)
