@@ -3,6 +3,22 @@ from PIL import Image
 import easyocr
 import numpy as np
 
+def draw_bboxes(image, results):
+    # Convert image to RGB (if not already in RGB mode)
+    img_draw = image.convert('RGB')
+    draw = ImageDraw.Draw(img_draw)
+
+    for result in results:
+        bbox = result[0]  # Bounding box coordinates
+        text = result[1]  # Detected text
+        # Draw the bounding box
+        draw.line([tuple(bbox[0]), tuple(bbox[1]), tuple(bbox[2]), tuple(bbox[3]), tuple(bbox[0])], 
+                  width=3, fill='red')
+        # Optionally, draw the text next to the bounding box
+        draw.text(tuple(bbox[0]), text, fill=(255, 0, 0))  # Draw the detected text at the top-left of the bbox
+    
+    return img_draw
+    
 # Set up EasyOCR reader (Arabic language included)
 reader = easyocr.Reader(['ar'])
 
@@ -94,6 +110,12 @@ if uploaded_image is not None:
             st.text(f"4. Nationality (left of {nationality_2_indicators}): {nationality_2}")
 
             st.subheader("All Information:")
+            # Draw bounding boxes on the image
+            img_with_bboxes = draw_bboxes(image, results)
+    
+            # Show image with bounding boxes
+            st.image(img_with_bboxes, caption='Processed Image with Bounding Boxes', use_column_width=True)
+    
             for result in results:
                 st.text(result[1])
 
