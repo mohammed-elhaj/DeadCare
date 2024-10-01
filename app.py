@@ -67,7 +67,7 @@ if uploaded_image is not None:
             # Find the specific texts using the new function
             name_1 = find_text_to_left(results, "نعم انا", x_range)
             nationality_1 = find_text_to_left(results, "الجنسية", x_range)
-            name_2 = find_text_to_left(results, "اقر بانني استلمت", x_range)
+            name_2 = find_text_to_left(results, "اقر باننى استلمت", x_range)
             nationality_2 = find_text_to_left(results, "الجنسية", x_range)
 
             # Display the extracted specific sentences
