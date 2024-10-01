@@ -67,7 +67,7 @@ if uploaded_image is not None:
             # Find the specific texts using the new function
             name_1 = find_text_to_left(results, "نعم انا", x_range)
             nationality_1 = find_text_to_left(results, "الجنسية", x_range)
-            name_2 = find_text_to_left(results, "اقر باني استلمت جثمان المتوفى", x_range)
+            name_2 = find_text_to_left(results, "اقر بانني استلمت", x_range)
             nationality_2 = find_text_to_left(results, "الجنسية", x_range)
 
             # Display the extracted specific sentences
@@ -76,3 +76,8 @@ if uploaded_image is not None:
             st.text(f"2. Nationality (left of 'الجنسية'): {nationality_1}")
             st.text(f"3. Name (left of 'اقر باني استلمت جثمان المتوفى'): {name_2}")
             st.text(f"4. Nationality (left of 'الجنسية' after 'اقر باني'): {nationality_2}")
+
+            st.subheader("All Information:")
+            for result in results:
+                st.text(resutl[1])
+
