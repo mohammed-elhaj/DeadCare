@@ -105,10 +105,6 @@ if uploaded_image is not None:
 
             # Display the extracted specific sentences
             st.subheader("Extracted Information:")
-            st.text(f"1. Name (left of {name_1_indicators}): {name_1}")
-            st.text(f"2. Nationality (left of {nationality_1_indicators}): {nationality_1}")
-            st.text(f"3. Name (left of {name_2_indicators}): {name_2}")
-            st.text(f"4. Nationality (left of {nationality_2_indicators}): {nationality_2}")
             data = {
                 "Information": [
                     f"Name (left of {name_1_indicators})",
