@@ -48,7 +48,7 @@ def find_texts_to_left(results, indicator_text_list, x_range=200):
                 valid_texts.append((bbox[0][0], text))  # Store x-coordinate and the text
 
         # Sort the valid texts by their x-coordinates (from left to right)
-        sorted_texts = sorted(valid_texts, key=lambda x: x[0])
+        sorted_texts = sorted(valid_texts, key=lambda x: x[0], reverse=True)
 
         # Combine all sorted texts into a single string
         final_text = ' '.join([text for _, text in sorted_texts])
