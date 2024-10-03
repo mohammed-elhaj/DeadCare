@@ -3,7 +3,6 @@ from PIL import Image, ImageDraw
 import easyocr
 import numpy as np
 import pandas as pd
-import cv2
 def draw_bboxes(image, results):
     # Convert image to RGB (if not already in RGB mode)
     img_draw = image.convert('RGB')
