@@ -90,8 +90,8 @@ if uploaded_image is not None:
     # Display the uploaded image
     image = Image.open(uploaded_image)
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    #cropped_image = crop_and_preprocess(uploaded_image, 225, 875)
-    #st.image(cropped_image, caption='cropped Image', use_column_width=True)
+    cropped_image = crop_and_preprocess(uploaded_image, 225, 875)
+    st.image(cropped_image, caption='cropped Image', use_column_width=True)
 
     
     # Convert the PIL image to numpy array
