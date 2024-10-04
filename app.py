@@ -21,17 +21,20 @@ def draw_bboxes(image, results):
     
     return img_draw
 
-def crop_and_preprocess(image_path, y1, y2):
-    # Read the image
-    image = cv2.imread(image_path)
+def crop_and_preprocess(image, y1=225, y2=875):
+    # Convert PIL Image to numpy array
+    img_array = np.array(image)
     
-    # Convert to grayscale
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # Convert to grayscale if it's not already
+    if len(img_array.shape) == 3:
+        gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
+    else:
+        gray = img_array
     
     # Crop the image
     cropped = gray[y1:y2, :]
     
-    return cropped
+    return Image.fromarray(cropped)
     
 # Set up EasyOCR reader (Arabic language included)
 reader = easyocr.Reader(['ar'])
@@ -91,7 +94,7 @@ if uploaded_image is not None:
     # Display the uploaded image
     image = Image.open(uploaded_image)
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    cropped_image = crop_and_preprocess(uploaded_image, 225, 875)
+    cropped_image = crop_and_preprocess(image)
     st.image(cropped_image, caption='cropped Image', use_column_width=True)
 
     
