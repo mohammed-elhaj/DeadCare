@@ -21,7 +21,7 @@ def draw_bboxes(image, results):
     
     return img_draw
 
-def crop_and_preprocess(image, y1=325, y2=775):
+def crop_and_preprocess(image, y1=345, y2=795):
     # Convert PIL Image to numpy array
     img_array = np.array(image)
     
